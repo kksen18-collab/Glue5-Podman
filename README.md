@@ -192,24 +192,18 @@ Create **`.devcontainer/devcontainer.json`** with this content:
 
   "remoteUser": "hadoop",
 
-  # Your project will live here inside the container
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 
-  # ✅ Explicitly mount your Windows folder to /workspaces/<repo-name>
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/${localWorkspaceFolderBasename},type=bind,consistency=cached",
 
-  # Mount AWS credentials from your Windows profile
   "mounts": [
     "source=${localEnv:USERPROFILE}/.aws,target=/home/hadoop/.aws,type=bind,readonly"
   ],
 
-  # Make your default AWS CLI profile available (change if needed)
   "containerEnv": { "AWS_PROFILE": "default" },
 
-  # Spark UI
   "forwardPorts": [4040],
 
-  # Tools you want available by default in the container
   "postCreateCommand": "python3 -m pip install -U pip pytest",
 
   "customizations": {
