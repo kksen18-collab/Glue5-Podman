@@ -191,7 +191,6 @@ Create **`.devcontainer/devcontainer.json`** with this content:
   "image": "public.ecr.aws/glue/aws-glue-libs:5",
 
   "remoteUser": "hadoop",
-
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/${localWorkspaceFolderBasename},type=bind,consistency=cached",
@@ -201,9 +200,10 @@ Create **`.devcontainer/devcontainer.json`** with this content:
   ],
 
   "containerEnv": { "AWS_PROFILE": "default" },
-
   "forwardPorts": [4040],
-
+  "portsAttributes": {
+  "4040": { "label": "Spark UI", "onAutoForward": "openBrowser" }
+},
   "postCreateCommand": "python3 -m pip install -U pip pytest",
 
   "customizations": {
@@ -212,13 +212,11 @@ Create **`.devcontainer/devcontainer.json`** with this content:
         "python.defaultInterpreterPath": "/usr/bin/python3.11",
         "terminal.integrated.defaultProfile.linux": "bash"
       },
-      "extensions": [
-        "ms-python.python",
-        "ms-vscode-remote.remote-containers"
-      ]
+      "extensions": ["ms-python.python","ms-vscode-remote.remote-containers"]
     }
   }
 }
+
 ```
 
 > **Why this fixes “workspace does not exist”**
