@@ -367,6 +367,69 @@ Use **Ctrl+Shift+B** to run `sample.py` or pick **Terminal → Run Task** for an
 podman pull public.ecr.aws/glue/aws-glue-libs:5
 podman run --rm --entrypoint /bin/sh public.ecr.aws/glue/aws-glue-libs:5 -c "python3 -V && spark-submit --version"
 ```
+Got it 👍 Here’s a **Markdown file** you can drop into your repo (e.g. `SPARK_UI.md`) to explain how to bring up and keep the Spark UI alive inside your Glue 5 + Podman Dev Container.
+
+````markdown
+# 🔎 Viewing the Spark UI in Glue 5 Dev Container
+
+When running AWS Glue 5 (Spark 3.5) locally in Podman/VS Code, you can access the **Spark Web UI** to monitor jobs, stages, and executors.
+
+---
+
+## ✅ Enable Spark UI in your script
+
+By default, the Spark UI only starts when an actual action is triggered.  
+Use the following example:
+
+```python
+from time import sleep
+from pyspark.sql import SparkSession
+
+spark = (
+    SparkSession.builder
+    .appName("ui-check")
+    .master("local[*]")
+    .config("spark.ui.enabled", "true")
+    .config("spark.ui.port", "4040")  # Spark will fall back to 4041/4042 if busy
+    .getOrCreate()
+)
+
+# Kick off a tiny action to initialize Spark + UI
+spark.range(1).count()
+
+# Print the Spark UI URL
+print("UI:", spark.sparkContext.uiWebUrl)
+
+# Keep process alive so UI is available in browser
+sleep(600)  # 10 minutes
+````
+
+---
+
+## 🌐 Accessing the UI
+
+1. In VS Code, ensure your **devcontainer.json** has port forwarding:
+
+```jsonc
+"forwardPorts": [4040, 4041, 4042],
+"portsAttributes": {
+  "4040": { "label": "Spark UI", "onAutoForward": "openBrowser" }
+}
+```
+
+2. Reopen in container.
+3. Run the script above (`python spark_ui_demo.py`).
+4. Look at the **VS Code ports tab** → you’ll see `4040` forwarded.
+5. Open in browser: [http://localhost:4040](http://localhost:4040)
+
+---
+
+## ⚡ Notes
+
+* If `4040` is in use, Spark will fall back to `4041`, `4042`, etc.
+* The UI stays alive only while the Spark context is running → the `sleep(600)` is to keep it open.
+* For convenience, put this in a helper script (`spark_ui_demo.py`) you can run anytime.
+
 
 
 
