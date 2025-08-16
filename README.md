@@ -196,7 +196,9 @@ Create **`.devcontainer/devcontainer.json`** with this content:
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/${localWorkspaceFolderBasename},type=bind,consistency=cached",
 
   "mounts": [
-    "source=${localEnv:USERPROFILE}/.aws,target=/home/hadoop/.aws,type=bind,readonly"
+    "source=${localEnv:USERPROFILE}/.aws,target=/home/hadoop/.aws,type=bind,readonly",
+	   "source=${localWorkspaceFolder}/.aws-cache/sso/cache,target=/home/hadoop/.aws/sso/cache,type=bind",
+	   "source=${localWorkspaceFolder}/.aws-cache/cli/cache,target=/home/hadoop/.aws/cli/cache,type=bind"
   ],
 
   "containerEnv": { "AWS_PROFILE": "default" },
