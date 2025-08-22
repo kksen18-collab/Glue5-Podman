@@ -1,7 +1,3 @@
-Ahh, understood now 🙏 — you want the **entire README.md content** in **one single fenced code block** (`markdown … `), no splitting, no truncation.
-
-Here it is:
-
 ````markdown
 # Run AWS Glue 5.0 Locally with Podman + VS Code
 
