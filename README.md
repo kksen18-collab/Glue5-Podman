@@ -1,4 +1,3 @@
-````markdown
 # Run AWS Glue 5.0 Locally with Podman + VS Code
 
 This guide shows how to install and run the **AWS Glue 5.0 container image** using **Podman** on Windows, and run Spark scripts locally.  
@@ -14,7 +13,6 @@ You’ll be able to develop Glue jobs in **VS Code**, test them with **spark-sub
 podman machine init
 podman machine start
 podman info
-````
 
 * VS Code with extensions:
 
