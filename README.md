@@ -328,7 +328,6 @@ podman run --rm --entrypoint /bin/sh public.ecr.aws/glue/aws-glue-libs:5 -c "pyt
 ```
 Got it 👍 Here’s a **Markdown file** you can drop into your repo (e.g. `SPARK_UI.md`) to explain how to bring up and keep the Spark UI alive inside your Glue 5 + Podman Dev Container.
 
-````markdown
 # 🔎 Viewing the Spark UI in Glue 5 Dev Container
 
 When running AWS Glue 5 (Spark 3.5) locally in Podman/VS Code, you can access the **Spark Web UI** to monitor jobs, stages, and executors.
