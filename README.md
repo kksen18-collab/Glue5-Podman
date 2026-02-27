@@ -208,6 +208,8 @@ You should see 3 rows with a `len` column in the Spark output.
 
 ---
 
+The **devcontainer.json** is essentially automating and enhancing what you were doing manually with **podman run**.
+
 ## 🧹 If you saw multiple “workspaces” before
 
 That happens if the project was mounted twice or a `.code-workspace` file added duplicates.
