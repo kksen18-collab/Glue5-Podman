@@ -13,6 +13,7 @@ You’ll be able to develop Glue jobs in **VS Code**, test them with **spark-sub
 podman machine init
 podman machine start
 podman info
+```
 
 * VS Code with extensions:
 
