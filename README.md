@@ -112,44 +112,6 @@ podman run -it --rm `
   public.ecr.aws/glue/aws-glue-libs:5 `
   spark-submit src/sample.py
 ```
-````markdown
-# VS Code Dev Container for AWS Glue 5.0 (Podman on Windows)
-
-This guide sets up a **VS Code Dev Container** that runs your project **inside the AWS Glue 5.0 image** using **Podman** on Windows.  
-It also fixes the common “**workspace does not exist**” and “**multiple workspaces**” issues by explicitly controlling the mount.
-
----
-
-## ✅ What you get
-- One clean workspace inside the container (`/workspaces/<your-folder>`).
-- Your Windows project folder is bind-mounted into the container.
-- Your AWS credentials are mounted at `/home/hadoop/.aws`.
-- Spark & Python ready to run (`spark-submit`, `pyspark`, `pytest`).
-
----
-
-## 🛠️ Prerequisites
-- **Podman Desktop** installed, VM started:
-  ```powershell
-  podman machine init
-  podman machine start
-  podman info
-````
-
-You should see:
-
-```
-API forwarding listening on: npipe:////./pipe/docker_engine
-```
-
-* **VS Code** with extensions:
-
-  * **Dev Containers** (ms-vscode-remote.remote-containers)
-  * **Python** (ms-python.python)
-* **AWS CLI** configured on Windows (creates `C:\Users\<you>\.aws\credentials`).
-* VS Code setting **Dev Containers: Docker Path** = `podman`.
-
----
 
 ## 📦 Folder layout
 
