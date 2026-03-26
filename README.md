@@ -73,6 +73,19 @@ podman run -it --rm `
 
 This drops you inside the container at `/home/hadoop/workspace`.
 
+```powershell
+
+podman run -d --name glue-local `
+-v "${HOME}\.aws:/home/hadoop/.aws:ro" `
+-v "${PWD}:/home/hadoop/workspace" `
+-w /home/hadoop/workspace `
+-e AWS_PROFILE=$env:AWS_PROFILE `
+--entrypoint /bin/bash `
+public.ecr.aws/glue/aws-glue-libs:5 `
+-c "sleep infinity"
+```
+This runs your container forever
+
 ---
 
 ## 🧪 Test Spark
